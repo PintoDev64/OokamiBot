@@ -5,11 +5,11 @@ module.exports = {
         .setName('decir')
         .setDescription('Dire lo que coloques aqui 👀')
         .addStringOption(option =>
-            option.setName('input')
-                .setDescription('The input to echo back')
+            option.setName('texto')
+                .setDescription('agrega el texto que quieres que diga')
                 .setRequired(true)),
-    async execute(interaction) {
-        const getOption = interaction.options.getString('input');
-        await interaction.reply(`hola <@${getOption}>`);
+    async execute(client, interaction) {
+        const TextToSay = await interaction.options.getString('texto');
+        await interaction.reply(TextToSay);
     },
 };

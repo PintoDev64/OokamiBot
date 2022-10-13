@@ -16,7 +16,7 @@ module.exports = {
                     { name: 'Asustad@', value: 'Fear' }
                 )
         ),
-    async execute(interaction) {
+    async execute(client, interaction) {
         const Emocion = await interaction.options.getString('emocion');
         const { tag, id } = interaction.user;
 
@@ -55,42 +55,37 @@ module.exports = {
                 .setTitle(`${InteractionTagUser} se siente ${Emocion}`)
                 .setDescription(`Emocion actual de <@${interactionUser}>`)
                 .setImage(`${Image}`)
-                .setFooter({ text: `Solicitado por ${InteractionTagUser}`, iconURL: interact.user.avatarURL() });
+                .setFooter({ text: `Solicitado por ${InteractionTagUser}`, iconURL: interact.user.avatarURL() })
+                .setTimestamp();
             return EmbedMessage
         };
 
-        switch (Emocion) {
-            case 'Sad':
-                interaction.reply({
-                    embeds: [
-                        Reply(ImageData.Sad, tag, id, interaction)
-                    ]
-                }); break;
-            case 'Angry':
-                interaction.reply({
-                    embeds: [
-                        Reply(ImageData.Angry, tag, id, interaction)
-                    ]
-                }); break;
-            case 'Confused':
-                interaction.reply({
-                    embeds: [
-                        Reply(ImageData.Confused, tag, id, interaction)
-                    ]
-                }); break;
-            case 'Fear':
-                interaction.reply({
-                    embeds: [
-                        Reply(ImageData.Fear, tag, id, interaction)
-                    ]
-                }); break;
-            default:
-                interaction.reply({
-                    embeds: [
-                        Reply(ImageData.Happy, tag, id, interaction)
-                    ]
-                }); break;
-        }
+        if (Emocion === 'Sad') interaction.reply({
+            embeds: [
+                Reply(ImageData.Sad, tag, id, interaction)
+            ]
+        });
+        if (Emocion === 'Angry') interaction.reply({
+            embeds: [
+                Reply(ImageData.Angry, tag, id, interaction)
+            ]
+        });
+        if (Emocion === 'Confused') interaction.reply({
+            embeds: [
+                Reply(ImageData.Confused, tag, id, interaction)
+            ]
+        });
+        if (Emocion === 'Fear') interaction.reply({
+            embeds: [
+                Reply(ImageData.Fear, tag, id, interaction)
+            ]
+        });
+        if (Emocion === 'Happy') interaction.reply({
+            embeds: [
+                Reply(ImageData.Happy, tag, id, interaction)
+            ]
+        });
+
 
     },
 };

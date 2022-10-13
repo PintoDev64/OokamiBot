@@ -9,8 +9,9 @@ module.exports = {
 
         const EmbedMessage = new EmbedBuilder()
             .setTitle(`Avatar de ${tag}`)
-            .setImage(interaction.user.avatarURL())
-            .setFooter({ text: `Solicitado por ${tag}`, iconURL: interaction.user.avatarURL({ size: 512, dynamic: true }) });
+            .setImage(interaction.user.avatarURL({ size: 1024 }))
+            .setFooter({ text: `Solicitado por ${tag}`, iconURL: interaction.user.avatarURL() })
+            .setTimestamp();
 
         interaction.reply({ embeds: [EmbedMessage] })
     },
