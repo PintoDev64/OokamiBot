@@ -1,5 +1,4 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const imageToColors = require('image-to-colors')
 
 module.exports = {
     data: new SlashCommandBuilder()
