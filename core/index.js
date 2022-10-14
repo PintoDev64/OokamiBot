@@ -122,16 +122,19 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
+
+//Express server & basic route
 app.get('/', (req, res) => {
     res.send('Ookami Bot is ON');
 })
-
 app.listen(3000, () => {
-    client.login(TOKENS.OokamiToken)
-    .then(console.log('Login Complete'))
-    .catch(console.error);
     console.log('Server state ON');
 })
+
+
 // Login to Discord with your client's token
+client.login(TOKENS.OokamiToken)
+    .then(console.log('Login Complete'))
+    .catch(console.error);
 
 
