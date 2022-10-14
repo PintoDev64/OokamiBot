@@ -1,7 +1,6 @@
 //Express
 const express = require('express');
 const app = express();
-
 //NodeJs
 const fs = require('node:fs');
 const path = require('node:path');
@@ -21,6 +20,15 @@ const myIntents = new IntentsBitField().add(
     IntentsBitField.Flags.Guilds,
 );
 const client = new Client({ intents: myIntents });
+const { Player } = require('discord-music-player');
+
+
+//Music Player in the client
+const reproductor = new Player(client, {
+    leaveOnEmpty: true,
+    quality: 'high',
+})
+client.player = reproductor;
 
 //CommandContext Collection
 const commandsContext = [];
