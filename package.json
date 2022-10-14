@@ -5,7 +5,8 @@
   "main": "core/index.js",
   "type": "commonjs",
   "scripts": {
-    "test": "nodemon ."
+    "test": "nodemon .",
+    "start": "node ."
   },
   "repository": {
     "type": "git",

@@ -1,3 +1,7 @@
+//Express
+const express = require('express');
+const app = express();
+
 //NodeJs
 const fs = require('node:fs');
 const path = require('node:path');
@@ -118,8 +122,16 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
+app.get('/', (req, res) => {
+    res.send('Ookami Bot is ON');
+})
 
-// Login to Discord with your client's token
-client.login(TOKENS.OokamiToken)
+app.listen(3000, () => {
+    client.login(TOKENS.OokamiToken)
+    .then(console.log('Login Complete'))
     .catch(console.error);
+    console.log('Server state ON');
+})
+// Login to Discord with your client's token
+
 
