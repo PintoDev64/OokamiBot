@@ -77,6 +77,17 @@ const rest = new REST({ version: '10' }).setToken(TOKENS.OokamiToken);
 })();
 
 
+//Express server & basic route
+const expressServer = (server) => {
+    server.get('/', (req, res) => {
+        res.send('Ookami Bot is ON');
+    })
+    server.listen(3000, () => {
+        console.log('Server state ON');
+    })
+}
+
+
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
     console.log('Ready!');
@@ -87,6 +98,7 @@ client.once('ready', () => {
         }],
         status: 'online',
     });
+    expressServer(app);
 });
 
 
@@ -121,15 +133,6 @@ client.on('interactionCreate', async interaction => {
         }
     }
 });
-
-
-//Express server & basic route
-app.get('/', (req, res) => {
-    res.send('Ookami Bot is ON');
-})
-app.listen(3000, () => {
-    console.log('Server state ON');
-})
 
 
 // Login to Discord with your client's token
