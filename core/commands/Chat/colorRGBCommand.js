@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -22,6 +22,13 @@ module.exports = {
         const Green = interaction.options.getNumber('verde');
         const Blue = interaction.options.getNumber('azul');
 
+        /* const canvasGenerator = (color) => {
+            const canvas = createCanvas(200, 200)
+            const ctx = canvas.getContext('2d')
+            ctx.fillStyle = `${color}`
+            return canvas.toBuffer()
+        } */
+
         const ConvertRGBtoHex = (red, green, blue) => {
             const ColorToHex = (color) => {
                 var hexadecimal = color.toString(16);
@@ -34,6 +41,7 @@ module.exports = {
             const MessageEmbedColor = new EmbedBuilder()
                 .setColor(`${ConvertRGBtoHex(red, green, blue)}`)
                 .setTitle(`${ConvertRGBtoHex(red, green, blue)}`)
+                //.setImage(canvasGenerator(ConvertRGBtoHex(red, green, blue)))
             return MessageEmbedColor
         }
 
