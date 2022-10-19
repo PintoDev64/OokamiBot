@@ -5,7 +5,7 @@ const app = express();
 const fs = require('node:fs');
 const path = require('node:path');
 // DiscordJs
-const { Client, IntentsBitField, Collection, REST, Routes, ActivityType, ClientPresence } = require('discord.js');
+const { Client, IntentsBitField, Collection, REST, Routes, ActivityType } = require('discord.js');
 //Tokens
 const { TOKENS } = require('../config/server.config');
 // Create a new client instance with their intents
@@ -105,6 +105,7 @@ client.once('ready', () => {
 
 //Interacion Create
 client.on('interactionCreate', async interaction => {
+
     //If not interaction, not action
     if (interaction.isChatInputCommand()) {
         //getCommand

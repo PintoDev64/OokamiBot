@@ -26,11 +26,11 @@
   },
   "homepage": "https://github.com/PintoGamer64/Ookami-Bot#readme",
   "dependencies": {
+    "@napi-rs/canvas": "^0.1.30",
     "discord.js": "^14.6.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "hispamemes": "^1.0.7",
-    "canvas": "^2.10.1"
+    "hispamemes": "^1.0.7"
   },
   "devDependencies": {
     "eslint": "^8.25.0",
