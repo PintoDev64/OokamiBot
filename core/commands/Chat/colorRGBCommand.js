@@ -8,15 +8,21 @@ module.exports = {
         .addNumberOption(option =>
             option.setName('rojo')
                 .setDescription('valor entre 0 - 255')
-                .setRequired(true))
+                .setRequired(true)
+                .setMinValue(0)
+                .setMaxValue(255))
         .addNumberOption(option =>
             option.setName('verde')
                 .setDescription('valor entre 0 - 255')
-                .setRequired(true))
+                .setRequired(true)
+                .setMinValue(0)
+                .setMaxValue(255))
         .addNumberOption(option =>
             option.setName('azul')
                 .setDescription('valor entre 0 - 255')
-                .setRequired(true)),
+                .setRequired(true)
+                .setMinValue(0)
+                .setMaxValue(255)),
     async execute(client, interaction) {
 
         //Get the Colors for the Actions
