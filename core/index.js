@@ -99,8 +99,11 @@ client.once('ready', () => {
         }],
         status: 'online',
     });
-    expressServer(app);
 });
+
+
+//Express Server Initialize
+expressServer(app);
 
 
 //Interacion Create
