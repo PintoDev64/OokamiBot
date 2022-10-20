@@ -80,7 +80,7 @@ const rest = new REST({ version: '10' }).setToken(TOKENS.OokamiToken);
 //Express server & basic route
 const expressServer = (server) => {
     server.get('/', (req, res) => {
-        console.log("entry for "/" main route");
+        console.log("entry for '/' main route");
         res.send('Ookami Bot is ON');
     })
     server.listen(3000, () => {
