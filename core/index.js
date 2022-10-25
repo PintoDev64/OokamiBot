@@ -123,7 +123,7 @@ client.on('interactionCreate', async interaction => {
             await interaction.reply({ content: '**❌ Hubo un error ejecutando el comando **`[ ' + interaction.commandName + ' ]`** ❌**, Espera mientras busco la solucion al problema!', ephemeral: true });
         }
     }
-    
+
     if (interaction.isUserContextMenuCommand()) {
         //getCommand
         const ContextComs = interaction.client.commandsContext.get(interaction.commandName);
