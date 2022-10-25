@@ -109,32 +109,33 @@ expressServer(app);
 //Interacion Create
 client.on('interactionCreate', async interaction => {
 
-    //If not interaction, not action
     if (interaction.isChatInputCommand()) {
         //getCommand
-        const command = interaction.client.commandsChat.get(interaction.commandName);
+        const ChatComs = interaction.client.commandsChat.get(interaction.commandName);
         //If not commands, not action
-        if (!command) return;
+        if (!ChatComs) return;
         try {
             console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction.`);
             //Execute function in the other files with this function with their parameters
-            await command.execute(client, interaction);
+            await ChatComs.execute(client, interaction);
         } catch (err) {
             console.error(err);
             await interaction.reply({ content: '**❌ Hubo un error ejecutando el comando **`[ ' + interaction.commandName + ' ]`** ❌**, Espera mientras busco la solucion al problema!', ephemeral: true });
         }
-    } else if (interaction.isUserContextMenuCommand()) {
+    }
+    
+    if (interaction.isUserContextMenuCommand()) {
         //getCommand
-        const command = interaction.client.commandsContext.get(interaction.commandName);
+        const ContextComs = interaction.client.commandsContext.get(interaction.commandName);
         //If not commands, not action
-        if (!command) return;
+        if (!ContextComs) return;
         try {
             console.log(`${interaction.user.tag} in #${interaction.channel.name} triggered an interaction.`);
             //Execute function in the other files with this function with their parameters
-            await command.execute(client, interaction);
+            await ContextComs.execute(client, interaction);
         } catch (err) {
             console.error(err);
-            await interaction.reply({ content: '**❌ Hubo un error ejecutando el comando **`[ ' + interaction.commandName + ' ]`** ❌**, Espera mientras busco la solucion al problema!', ephemeral: true });
+            await interaction.reply({ content: '**❌ Hubo un error ejecutando el comando contextual **`[ ' + interaction.commandName + ' ]`** ❌**, Espera mientras busco la solucion al problema!', ephemeral: true });
         }
     }
 });
