@@ -3,34 +3,21 @@ const { ContextMenuCommandBuilder, EmbedBuilder, ApplicationCommandType } = requ
 const { TOKENS } = require('../../../config/server.config')
 //Axios
 const axios = require('axios');
-//Envioment Variables
-const dotenv = require('dotenv');
-dotenv.config();
+
+//URLBannerData
+const { Banner } = require('../globalFunctions/URLBanners')
 
 module.exports = {
     data: new ContextMenuCommandBuilder()
         .setName('banner')
         .setType(ApplicationCommandType.User),
     async execute(client, interaction) {
-        const { tag } = interaction.targetUser
 
-        const data = await axios.get(`https://discord.com/api/users/${interaction.targetUser.id}`, {
-            headers: {
-                authorization: `Bot ${TOKENS.OokamiToken}`
-            }
-        }).then(res => res.data)
-
-        const { id, banner } = data;
-
-        const extension = banner.startsWith("a_") ? '.gif' : '.png';
-
-        const url = `https://cdn.discordapp.com/banners/${id}/${banner}${extension}?size=4096`
-
-        console.log(url);
+        const { tag } = interaction.user;
 
         const EmbedMessage = new EmbedBuilder()
             .setTitle(`Avatar de ${tag}`)
-            .setImage(url)
+            .setImage(await Banner.Context(interaction))
             .setFooter({ text: `Solicitado por ${tag}`, iconURL: interaction.user.avatarURL() })
             .setTimestamp();
 
