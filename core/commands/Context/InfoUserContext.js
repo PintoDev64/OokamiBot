@@ -1,24 +1,30 @@
 const { ContextMenuCommandBuilder, ApplicationCommandType, EmbedBuilder } = require('discord.js');
 
+//URLBannerData
+const { Banner } = require('../globalFunctions/URLBanners')
+
 module.exports = {
     data: new ContextMenuCommandBuilder()
         .setName('informacion')
         .setType(ApplicationCommandType.User),
     async execute(client, interaction) {
 
-        const { username, discriminator, id } = interaction.targetUser;
+        const { tag, username, discriminator, id } = interaction.targetUser;
+        const displayRoles = [];
 
-        const ReplyEmbedInformationUser = (id, username, discriminator, interact) => {
-            const EmbedMessageInfo = new EmbedBuilder()
-                .setTitle(`Informacion de ${interaction.targetUser.username}#${interaction.targetUser.discriminator}`)
-                .setThumbnail(interact.targetUser.avatarURL())
-                .setFields(
-                    { name: 'Identificador', value: id },
-                    { name: 'URL del Avatar', value: interact.targetUser.avatarURL() },
-                )
-            return EmbedMessageInfo
-        }
+        interaction.member.roles.cache.map( role => displayRoles = [...displayRoles,`<@&${role.id}>\n`])
 
-        interaction.reply({ embeds: [ReplyEmbedInformationUser(id, username, discriminator, interaction)] })
+        const EmbedMessageInfo = new EmbedBuilder()
+            .setTitle(`Informacion de ${tag}`)
+            .setImage(interaction.targetUser.avatarURL({ size: 1024 }))
+            .addFields(
+                { name: 'Roles', value: displayRoles.toString() },
+                { name: 'Nombre de Usuario', value: `${username}` },
+                { name: '#Codigo', value: `${discriminator}` },
+                { name: 'Identificador', value: `${id}` },
+                { name: 'URL del Avatar', value: interaction.targetUser.avatarURL({ size: 1024 }) },
+            )
+
+        interaction.reply({ embeds: [EmbedMessageInfo] })
     }
 }
